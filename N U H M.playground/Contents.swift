@@ -12,10 +12,6 @@ import PlaygroundSupport
 barColor = /*#-editable-code number of repetitions*/#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)/*#-end-editable-code*/
 backgroundColor = /*#-editable-code number of repetitions*/#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)/*#-end-editable-code*/
 /*:
- Why not give it a try by pressing the Start button? It's enjoyable.
- */
-/*:
- 
  ### About the general formula
  Generally speaking, the general formula represents the regular pattern of a sequence, such as the pattern `x_(i) = 1` for constant sequence `[1, 1, 1, 1, ...]` and pattern `x_(i) = x_(i - 1) + 1` for ascending sequence `[1, 2, 3, 4, ...]`.
  
@@ -28,7 +24,6 @@ forward = { prev_prev_value, prev_value in
     return /*#-editable-code number of repetitions*/prev_value - prev_prev_value + 2/*#-end-editable-code*/
 }
 /*:
- 
  ### About the initial terms
  The initial can also define the pattern of the sequence. Two sequence might be different even if they have identical general formula, such as the sequence `[1, 3, 5, 7, ...]` and `[2, 4, 6, 8, ...]`, both of which have the general formula `x_(i) = x_(i - 1) + 2`.
  
@@ -37,7 +32,6 @@ forward = { prev_prev_value, prev_value in
 initialValue_0 = /*#-editable-code number of repetitions*/0/*#-end-editable-code*/
 initialValue_1 = /*#-editable-code number of repetitions*/1/*#-end-editable-code*/
 /*:
- 
  ### Can you hear it?
  In order to give you a better understanding of the variety of the sequence terms, I used notes to represent the terms of your sequence. The greater the term is, the higher the pitch is. Hey, now your sequence is generating music!
  
@@ -52,8 +46,7 @@ timeInterval = /*#-editable-code number of repetitions*/0.2/*#-end-editable-code
 useModulus = /*#-editable-code number of repetitions*/true/*#-end-editable-code*/
 
 
-
 //#-hidden-code
 // Present the view controller in the Live View window
-PlaygroundPage.current.liveView = AutoRegressionViewController()
+PlaygroundPage.current.liveView = SequenceViewController()
 //#-end-hidden-code

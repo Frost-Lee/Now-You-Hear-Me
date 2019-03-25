@@ -13,7 +13,7 @@ public func delay(for seconds: Double, block: @escaping ()->()) {
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds, execute: block)
 }
 
-public class AutoRegressionViewController: UIViewController {
+public class SequenceViewController: UIViewController {
     
     public var backgroundView: UIView = UIView()
     public var valueViews: [ValueView] = []
@@ -29,6 +29,8 @@ public class AutoRegressionViewController: UIViewController {
             for index in 0 ..< sequenceValues.count {
                 if sequenceValues[index] > 99 {
                     numberLabels[index].text = "+"
+                } else if sequenceValues[index] < -99 {
+                    numberLabels[index].text = "-"
                 } else {
                     numberLabels[index].text = String(sequenceValues[index])
                 }
@@ -62,7 +64,7 @@ public class AutoRegressionViewController: UIViewController {
             let numberLabel = UILabel()
             numberLabel.textColor = .white
             numberLabel.textAlignment = .center
-            numberLabel.font = UIFont.boldSystemFont(ofSize: 17)
+            numberLabel.font = UIFont.boldSystemFont(ofSize: 15)
             numberLabels.append(numberLabel)
             numberLabel.translatesAutoresizingMaskIntoConstraints = false
             numberStackView.addArrangedSubview(numberLabel)
@@ -106,7 +108,8 @@ public class AutoRegressionViewController: UIViewController {
     @objc public func startButtonTapped() {
         if startButton.titleLabel?.text == "Start" {
             startButton.isEnabled = false
-            playNote(at: 0, maximum: getMaximum())
+            let span = getSpan()
+            playNote(at: 0, min: span.0, max: span.1)
         } else {
             startButton.setTitle("Start", for: .normal)
             for index in 0 ..< 10 {
@@ -116,10 +119,14 @@ public class AutoRegressionViewController: UIViewController {
         }
     }
     
-    public func playNote(at index: Int, maximum: Int) {
+    public func playNote(at index: Int, min: Int, max: Int) {
         calculateValue(at: index)
         audioPlayer?.pause()
-        valueViews[index].changeValue(to: Double(sequenceValues[index]) / Double(maximum))
+        if max - min == 0 {
+            valueViews[index].changeValue(to: 0.5)
+        } else {
+            valueViews[index].changeValue(to: Double(sequenceValues[index] - min) / Double(max - min))
+        }
         var pitch: Int = 0
         if useModulus {
             pitch = abs(sequenceValues[index]) % highestPitch
@@ -138,7 +145,7 @@ public class AutoRegressionViewController: UIViewController {
             return
         }
         delay(for: timeInterval) {
-            self.playNote(at: index + 1, maximum: maximum)
+            self.playNote(at: index + 1, min: min, max: max)
         }
     }
     
@@ -152,16 +159,12 @@ public class AutoRegressionViewController: UIViewController {
         }
     }
     
-    public func getMaximum() -> Int {
+    public func getSpan() -> (Int, Int) {
         var preCalculateArray: [Int] = [initialValue_0, initialValue_1]
         for index in 2 ..< 10 {
             preCalculateArray.append(forward(preCalculateArray[index - 2], preCalculateArray[index - 1]))
         }
-        var maximum = preCalculateArray.max()!
-        if maximum == 0 {
-            maximum = 1
-        }
-        return maximum
+        return (preCalculateArray.min()!, preCalculateArray.max()!)
     }
     
 }
