@@ -81,24 +81,24 @@ public class SequenceViewController: UIViewController {
         startButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         
         NSLayoutConstraint.activate([
-            valueStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 64),
-            valueStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -64),
-            valueStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 160),
-            valueStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -128)
+            startButton.widthAnchor.constraint(equalToConstant: 160),
+            startButton.heightAnchor.constraint(equalToConstant: 48),
+            startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            startButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -32)
         ])
         
         NSLayoutConstraint.activate([
             numberStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 64),
             numberStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -64),
-            numberStackView.bottomAnchor.constraint(equalTo: valueStackView.topAnchor, constant: -16),
+            numberStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 64),
             numberStackView.heightAnchor.constraint(equalToConstant: 32)
         ])
         
         NSLayoutConstraint.activate([
-            startButton.widthAnchor.constraint(equalToConstant: 150),
-            startButton.heightAnchor.constraint(equalToConstant: 50),
-            startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
-            startButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -32)
+            valueStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 64),
+            valueStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -64),
+            valueStackView.topAnchor.constraint(equalTo: numberStackView.bottomAnchor, constant: 8),
+            valueStackView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -32)
         ])
         
         sequenceValues = Array(repeatElement(0, count: 10))
