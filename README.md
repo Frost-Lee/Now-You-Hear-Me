@@ -5,6 +5,12 @@ Now You Hear Me is a Swift Playground application that can let the user to defin
 
 
 
+### About the Development Tips
+
+This is one of the very first Swift Playground projects that I worked on, and it was found that developing a Swift Playground is not exactly the same as developing an iOS project, there are something that should be mentioned in order to prohibit unnecessary time waste. I wrote a personal blog to record the developing tips, it is [here](https://frost-lee.github.io/Tips-for-Developing-a-Swift-Playground/).
+
+
+
 ### Special Thanks
 
 Special thanks to [Circle](https://github.com/Nilcric) for providing the audio resources and [Race](https://github.com/DocRace) for providing the idea of using `UIStackView` for layout.
