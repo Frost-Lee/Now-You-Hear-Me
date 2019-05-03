@@ -1,7 +1,9 @@
 # Now You Hear Me
 Now You Hear Me is a Swift Playground application that can let the user to define their own sequence, visualize it and make music with it.
 
-![Now You Hear Me](https://i.imgur.com/5VSGuBv.jpg)
+You can clone or download the project, AirDrop `N U H M.playground` to your iPad and give it a try.
+
+![Now You Hear Me](https://i.imgur.com/M5lms8y.jpg)
 
 
 
