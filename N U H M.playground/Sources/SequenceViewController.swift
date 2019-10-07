@@ -12,13 +12,53 @@ public var initialValue_1: Int = 1
 public class SequenceViewController: UIViewController {
     
     public var backgroundView: UIView = UIView()
-    public var valueViews: [ValueView] = []
-    public var valueStackView: UIStackView = UIStackView()
-    public var numberLabels: [UILabel] = []
-    public var numberStackView: UIStackView = UIStackView()
-    public var startButton: UIButton = UIButton()
     
-    public var audioPlayer: AVAudioPlayer?
+    public var valueStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    public var numberStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 0
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    public var startButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.4156862745, blue: 1, alpha: 1)
+        button.setTitle("Start", for: .normal)
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    public var numberLabels: [UILabel] = {
+        var labels: [UILabel] = []
+        for _ in 0 ..< SequenceViewController.visibleValues {
+            let label = UILabel()
+            label.textColor = .white
+            label.textAlignment = .center
+            label.font = UIFont.boldSystemFont(ofSize: 15)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            labels.append(label)
+        }
+        return labels
+    }()
+    public var valueViews: [ValueView] = {
+        var valueViews: [ValueView] = []
+        for _ in 0 ..< SequenceViewController.visibleValues {
+            let valueView = ValueView()
+            valueView.translatesAutoresizingMaskIntoConstraints = false
+            valueViews.append(valueView)
+        }
+        return valueViews
+    }()
     
     public var sequenceValues: [Int] = [] {
         didSet {
@@ -33,8 +73,11 @@ public class SequenceViewController: UIViewController {
             }
         }
     }
+    static var visibleValues: Int = 10
     public var playIndex: Int = 0
     public var highestPitch: Int = 34
+    
+    public var audioPlayer: AVAudioPlayer?
     
     public override func loadView() {
         super.loadView()
@@ -42,38 +85,17 @@ public class SequenceViewController: UIViewController {
         self.view = backgroundView
         backgroundView.backgroundColor = backgroundColor
         
-        valueStackView.spacing = 20
-        valueStackView.distribution = .fillEqually
-        valueStackView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(valueStackView)
-        
-        numberStackView.spacing = 0
-        numberStackView.distribution = .fillEqually
-        numberStackView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(numberStackView)
         
-        for _ in 0 ..< 10 {
-            let valueView = ValueView()
-            valueViews.append(valueView)
-            valueView.translatesAutoresizingMaskIntoConstraints = false
-            valueStackView.addArrangedSubview(valueView)
-            let numberLabel = UILabel()
-            numberLabel.textColor = .white
-            numberLabel.textAlignment = .center
-            numberLabel.font = UIFont.boldSystemFont(ofSize: 15)
-            numberLabels.append(numberLabel)
-            numberLabel.translatesAutoresizingMaskIntoConstraints = false
-            numberStackView.addArrangedSubview(numberLabel)
+        for index in 0 ..< SequenceViewController.visibleValues {
+            valueStackView.addArrangedSubview(valueViews[index])
+            numberStackView.addArrangedSubview(numberLabels[index])
         }
         
-        startButton.translatesAutoresizingMaskIntoConstraints = false
-        startButton.setTitle("Start", for: .normal)
-        startButton.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.4156862745, blue: 1, alpha: 1)
-        startButton.layer.cornerRadius = 10
-        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        
         self.view.addSubview(startButton)
-        startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        
+        // Can be removed
         startButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         
         NSLayoutConstraint.activate([
@@ -98,7 +120,6 @@ public class SequenceViewController: UIViewController {
         ])
         
         sequenceValues = Array(repeatElement(0, count: 10))
-        
     }
     
     @objc public func startButtonTapped() {
