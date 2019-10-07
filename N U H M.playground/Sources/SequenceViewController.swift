@@ -12,7 +12,6 @@ public var initialValue_1: Int = 1
 public class SequenceViewController: UIViewController {
     
     public var backgroundView: UIView = UIView()
-    
     public var valueStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
@@ -84,19 +83,18 @@ public class SequenceViewController: UIViewController {
         
         self.view = backgroundView
         backgroundView.backgroundColor = backgroundColor
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.view.addSubview(valueStackView)
         self.view.addSubview(numberStackView)
-        
+        self.view.addSubview(startButton)
         for index in 0 ..< SequenceViewController.visibleValues {
             valueStackView.addArrangedSubview(valueViews[index])
             numberStackView.addArrangedSubview(numberLabels[index])
         }
-        
-        self.view.addSubview(startButton)
-        
-        // Can be removed
-        startButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         
         NSLayoutConstraint.activate([
             startButton.widthAnchor.constraint(equalToConstant: 160),
