@@ -9,10 +9,6 @@ public var useModulus: Bool = true
 public var initialValue_0: Int = 0
 public var initialValue_1: Int = 1
 
-public func delay(for seconds: Double, block: @escaping ()->()) {
-    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds, execute: block)
-}
-
 public class SequenceViewController: UIViewController {
     
     public var backgroundView: UIView = UIView()
@@ -144,7 +140,7 @@ public class SequenceViewController: UIViewController {
             self.startButton.isEnabled = true
             return
         }
-        delay(for: timeInterval) {
+        Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { timer in
             self.playNote(at: index + 1, min: min, max: max)
         }
     }
