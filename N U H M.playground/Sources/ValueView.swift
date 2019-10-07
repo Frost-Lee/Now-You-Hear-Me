@@ -2,22 +2,22 @@ import UIKit
 
 public class ValueView: UIView {
     
-    public var lowView: UIView = {
+    private var lowView: UIView = {
         let view = UIView()
         view.backgroundColor = barColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
     }()
-    public var highView: UIView = {
+    private var highView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.15)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
     }()
-    public var valueConstraint: NSLayoutConstraint!
-    public var zeroOffset: CGFloat = 16
+    private var valueConstraint: NSLayoutConstraint!
+    private var zeroOffset: CGFloat = 16
     private var value: Double = 0
     
     public override init(frame: CGRect) {

@@ -11,22 +11,22 @@ public var initialValue_1: Int = 1
 
 public class SequenceViewController: UIViewController {
     
-    public var backgroundView: UIView = UIView()
-    public var valueStackView: UIStackView = {
+    private var backgroundView: UIView = UIView()
+    private var valueStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    public var numberStackView: UIStackView = {
+    private var numberStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 0
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    public var startButton: UIButton = {
+    private var startButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.4156862745, blue: 1, alpha: 1)
         button.setTitle("Start", for: .normal)
@@ -37,7 +37,7 @@ public class SequenceViewController: UIViewController {
         return button
     }()
     
-    public var numberLabels: [UILabel] = {
+    private var numberLabels: [UILabel] = {
         var labels: [UILabel] = []
         for _ in 0 ..< SequenceViewController.visibleValues {
             let label = UILabel()
@@ -49,7 +49,7 @@ public class SequenceViewController: UIViewController {
         }
         return labels
     }()
-    public var valueViews: [ValueView] = {
+    private var valueViews: [ValueView] = {
         var valueViews: [ValueView] = []
         for _ in 0 ..< SequenceViewController.visibleValues {
             let valueView = ValueView()
@@ -73,10 +73,10 @@ public class SequenceViewController: UIViewController {
         }
     }
     static var visibleValues: Int = 10
-    public var playIndex: Int = 0
-    public var highestPitch: Int = 34
+    private var playIndex: Int = 0
+    private var highestPitch: Int = 34
     
-    public var audioPlayer: AVAudioPlayer?
+    private var audioPlayer: AVAudioPlayer?
     
     public override func loadView() {
         super.loadView()
@@ -120,7 +120,7 @@ public class SequenceViewController: UIViewController {
         sequenceValues = Array(repeatElement(0, count: 10))
     }
     
-    @objc public func startButtonTapped() {
+    @objc private func startButtonTapped() {
         if startButton.titleLabel?.text == "Start" {
             startButton.isEnabled = false
             let span = getSpan()
@@ -134,7 +134,7 @@ public class SequenceViewController: UIViewController {
         }
     }
     
-    public func playNote(at index: Int, min: Int, max: Int) {
+    private func playNote(at index: Int, min: Int, max: Int) {
         calculateValue(at: index)
         audioPlayer?.pause()
         if max - min == 0 {
@@ -164,7 +164,7 @@ public class SequenceViewController: UIViewController {
         }
     }
     
-    public func calculateValue(at index: Int) {
+    private func calculateValue(at index: Int) {
         if index == 0 {
             sequenceValues[0] = initialValue_0
         } else if index == 1 {
@@ -174,7 +174,7 @@ public class SequenceViewController: UIViewController {
         }
     }
     
-    public func getSpan() -> (Int, Int) {
+    private func getSpan() -> (Int, Int) {
         var preCalculateArray: [Int] = [initialValue_0, initialValue_1]
         for index in 2 ..< 10 {
             preCalculateArray.append(forward(preCalculateArray[index - 2], preCalculateArray[index - 1]))
