@@ -3,7 +3,7 @@ Now You Hear Me is a Swift Playground application that can let the user to defin
 
 You can clone or download the project, AirDrop `N U H M.playground` to your iPad and give it a try.
 
-![Now You Hear Me](https://i.imgur.com/M5lms8y.jpg)
+![Now You Hear Me](http://144.202.103.127:1910/bloghost/pMuFtETnMqtXNx5drLuH25.jpeg)
 
 
 
