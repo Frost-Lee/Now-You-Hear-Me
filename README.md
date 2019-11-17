@@ -1,7 +1,7 @@
 # Now You Hear Me
-Now You Hear Me is a Swift Playground application that can let the user to define their own sequence, visualize it and make music with it.
+Now You Hear Me is a Swift Playground application that can let the user to define their own sequence, visualize it and make music with it. Why don't give it a try?
 
-You can clone or download the project, AirDrop `N U H M.playground` to your iPad and give it a try.
+__Since this repository uses [Git LFS](https://git-lfs.github.com), you need to clone the repository and AirDrop `N U H M.playground` to your iPad to run it. There will be problem otherwise since the audio files would be missing.__
 
 ![Now You Hear Me](http://144.202.103.127:1910/bloghost/pMuFtETnMqtXNx5drLuH25.jpeg)
 
