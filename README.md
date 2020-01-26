@@ -3,13 +3,13 @@ Now You Hear Me is a Swift Playground application that can let the user to defin
 
 __Since this repository uses [Git LFS](https://git-lfs.github.com), you need to clone instead of downloading zip of the repository to run it. There will be problem otherwise since the content of the audio files will be unexpected.__
 
-![Now You Hear Me](http://144.202.103.127:1910/bloghost/pMuFtETnMqtXNx5drLuH25.jpeg)
+![Now You Hear Me](http://209.250.236.3:1910/bloghost/pMuFtETnMqtXNx5drLuH25.jpeg)
 
 
 
 ### About the Development Tips
 
-This is one of the very first Swift Playground projects that I worked on, and it was found that developing a Swift Playground is not exactly the same as developing an iOS project, there are something that should be mentioned in order to prohibit unnecessary time waste. I wrote a personal blog to record the developing tips, it is [here](https://frost-lee.github.io/Tips-for-Developing-a-Swift-Playground/).
+This is one of the very first Swift Playground projects that I worked on, and it was found that developing a Swift Playground is not exactly the same as developing an iOS project, there are something that should be mentioned in order to prohibit unnecessary time waste. I wrote a personal blog to record the developing tips, it is [here](https://frost-lee.github.io/tip-playground/).
 
 
 
