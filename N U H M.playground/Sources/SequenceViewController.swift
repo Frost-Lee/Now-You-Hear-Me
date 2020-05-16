@@ -15,6 +15,8 @@ public class SequenceViewController: UIViewController {
     private var valueStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
