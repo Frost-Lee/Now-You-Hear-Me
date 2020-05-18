@@ -5,45 +5,37 @@ import PlaygroundSupport
 
 /*:
  # Now You Hear Me
- Hello! I'm a college student having two majors: Computer Science and Statistics. I learn lots of math courses. One of the most fascinating thing in math is sequence. A general formula can be given for most sequence. Oh, you don't need to know that! Just spend some time playing my Playground and give it a try!
+ Hello! I'm a college student having two majors: Computer Science and Statistics. One of the most fascinating thing I found among the things I learnt is recursive sequence. Don't be frightened by its name! This playground will definitely give you a better sense of that, besides, you can even make music with recursive sequence!
  
- Building an user interface that satisfies everyone is tough, thus, I left you the opportunity to choose the color of the background and the value bars!
- */
-barColor = /*#-editable-code number of repetitions*/#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)/*#-end-editable-code*/
-backgroundColor = /*#-editable-code number of repetitions*/#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)/*#-end-editable-code*/
-/*:
- ### About the general formula
- Generally speaking, the general formula represents the regular pattern of a sequence, such as the pattern `x_(i) = 1` for constant sequence `[1, 1, 1, 1, ...]` and pattern `x_(i) = x_(i - 1) + 1` for ascending sequence `[1, 2, 3, 4, ...]`.
+ ## About Recursive Sequence
+ Mathematically, a sequence refers to a list of numbers, or terms. Recursive sequence is a special kind of sequence whose term can be conducted from terms before that term. The following 2 things are essential for a deciding a recursive sequence.
  
- Here, you can define your own general formula by assigning return value of the closure `forward`, which is used to return the value of the next term of the sequence.
-
- The parameter `prev_value` represents `x_(i - 1)`, and `prev_prev_value` represents `x_(i - 2)`. Two parameters are provided in case you would like to define more complicated general formula, such as the general formula for Fibonacci sequence: `x_(i) = x_(i - 1) + x_(i - 2)`.
- > You can seek for more probabilities for your sequence, like adding a random term, which would make the sequence a time series, theoretically speaking.
+ - Initial term(s): The first several terms for the sequence. Since there is not enough terms before them for conducting their value, we need to give them explicitly.
+ - Recursive Formula: A formula that explicitly defines how to conduct new terms with terms before them.
+ 
+ ## Play with It
+ This Playground gives you a fresh way to define and visualize your own recursive sequence. Besides, it plays your sequence terms with piano!
+ 
+ ### Define the Initial Terms
+ You can find 2 sliders at the interface. The sliders helps you to pick the initial terms of your sequence in an extremely easy way. Just slide, and pick the first and second initial terms from `0` to `9`.
+ 
+ ### Choose a Recursive Formula
+ Sometimes even mathemeticians don't actually like writing formulaes. However, you can easily choose a prototype formulae by simply tapping the arrow button. There are several prototypes for you to choose from.
+ 
+ - __constant__: `x_(i) = x_(i - 1)`. This formula gives new term identically as the previous term. Hummmmm. this sounds plain.
+ - __linear__: `x_(i) = x_(i - 1) + (x_(i - 1) - x_(i - 2))`. This formula generates arithmetic progression. Could you play a C scale with this formula?
+ - __fibonacci__: `x_(i) = x_(i - 1) + x_(i - 2)`. You are sure to know this name. This formula makes the sequence to grow aggressively. Does its piano nots also sounds aggressive? You will see.
+ - __regression__: `x_(i) = x_(i - 1) - x_(i - 2) + 2`. It's a formula I found that makes rather good music, if you try more, you can also find yours.
+ - __random__: `x_(i) = randint()`. Why don't simply give the control to the natural world and let it create for you?
+ 
+ Are you feeling like writing your own recursive formula? Here's the chance! You can implement `customizedForward` closure by your self, and choose __customized__ to use your own defined formula. I really hope you find some sequence that makes good music.
  */
-forward = { prev_prev_value, prev_value in
-    return /*#-editable-code number of repetitions*/prev_value - prev_prev_value + 2/*#-end-editable-code*/
+customizedForward = { prev_prev_value, prev_value in
+    return /*#-editable-code number of repetitions*/prev_value - 2 * prev_prev_value + 5/*#-end-editable-code*/
 }
 /*:
- ### About the initial terms
- The initial can also define the pattern of the sequence. Two sequence might be different even if they have identical general formula, such as the sequence `[1, 3, 5, 7, ...]` and `[2, 4, 6, 8, ...]`, both of which have the general formula `x_(i) = x_(i - 1) + 2`.
- 
- The parameter `initialValue_0` and `initialValue_1` represent the first and second initial term of the sequence. You can modify your sequence by modifying the initial values.
+ > Probably you will find the piano note sounds don't match the sequence term sometimes, this is because we have very limited piano keys, but unlimited natural numbers. If the term is too big or too small to be represented by a piano note, we take modulus to drag it back.
  */
-initialValue_0 = /*#-editable-code number of repetitions*/0/*#-end-editable-code*/
-initialValue_1 = /*#-editable-code number of repetitions*/1/*#-end-editable-code*/
-/*:
- ### Can you hear it?
- In order to give you a better understanding of the variety of the sequence terms, I used notes to represent the terms of your sequence. The greater the term is, the higher the pitch is. Hey, now your sequence is generating music!
- 
- By modifying `timeInterval`, you can control the speed of the music. The greater it is, the slower your music is. To get better experience, I suggest you to set the value between `0.1` and `2`.
- */
-timeInterval = /*#-editable-code number of repetitions*/0.2/*#-end-editable-code*/
-/*:
- What about the term that is too large? Taking the remainer of the absolute value of the term and the number of notes available is a good solution.
- 
- You can also cancel taking the remainer for too large terms. If so, the sound of the corresponding note would be replaced by an alert sound.
- */
-useModulus = /*#-editable-code number of repetitions*/true/*#-end-editable-code*/
 
 
 //#-hidden-code

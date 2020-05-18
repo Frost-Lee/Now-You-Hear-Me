@@ -4,7 +4,7 @@ public class ValueView: UIView {
     
     private var lowView: UIView = {
         let view = UIView()
-        view.backgroundColor = barColor
+        view.backgroundColor = highLightColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
@@ -41,7 +41,6 @@ public class ValueView: UIView {
         
         self.backgroundColor = backgroundColor
         self.clipsToBounds = true
-        
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -56,10 +55,10 @@ public class ValueView: UIView {
         highView.layer.cornerRadius = width / 8
         lowView.layer.cornerRadius = width / 8
         zeroOffset = width * (0.125 + 1.0 / 6.0) + height / 32.0
-        changeValue(to: value, animated: false)
+        setValue(value, animated: false)
     }
     
-    public func changeValue(to value: Double, animated: Bool = true) {
+    public func setValue(_ value: Double, animated: Bool = true) {
         self.value = value
         UIView.animate(
             withDuration: timeInterval,
